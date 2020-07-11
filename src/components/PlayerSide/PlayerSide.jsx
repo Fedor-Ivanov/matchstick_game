@@ -3,21 +3,31 @@ import { connect } from 'react-redux'
 import { takeItems, pullItems, switchTurn } from '../../store/actions'
 
 
-function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, takeItems }) {
+function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, takeItems, itemsPull }) {
 
-    const [takingItems, setTakingItems] = useState()
+    const [takingItems, setTakingItems] = useState();
 
-    function onChange({ target }) {
-        setTakingItems(target.value)
+    function checkWinner() {
+        if (playerCount % 2 == 0)
+            alert("выиграл");
+        if (playerCount % 2 == 1)
+            alert("проиграл");
     }
 
     function onEndTurn() {
         if (takingItems <= 3 && takingItems > 0) {
-            takeItems(takingItems)
-            updatePlayerCount(+takingItems)
-            switchTurn()
+
+            if (itemsPull - takingItems > 0) {
+                takeItems(takingItems)
+                updatePlayerCount(+takingItems)
+                switchTurn()
+            } else if (itemsPull - takingItems == 0) {
+                takeItems(takingItems)
+                updatePlayerCount(+takingItems)
+                checkWinner()
+            }
         } else {
-            alert('Необходимо ввести число от 0 до 3')
+            alert('Необходимо ввести число от 1 до 3')
         }
     }
 
@@ -27,7 +37,7 @@ function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, ta
             <div>
                 <span>My count - {playerCount}</span>
             </div>
-            <div><input style={{ width: '100%' }} type='number' name='points' min='1' max='3' onChange={onChange}></input></div>
+            <div><input style={{ width: '100%' }} type='number' name='points' min='1' max='3' onChange={event => setTakingItems(event.target.value)}></input></div>
             <button disabled={!playerTurn} onClick={() => onEndTurn()}>end turn</button>
         </div>
     )
@@ -36,14 +46,15 @@ function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, ta
 function mapStateToProps(state) {
     return {
         playerCount: state.playerCount,
-        playerTurn: state.playerTurn
+        playerTurn: state.playerTurn,
+        itemsPull: state.itemsPull,
     }
 }
 
 const mapDispatchToProps = {
     takeItems: takeItems,
     updatePlayerCount: pullItems,
-    switchTurn: switchTurn
+    switchTurn: switchTurn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerSide)

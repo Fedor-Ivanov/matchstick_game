@@ -1,3 +1,5 @@
+
+// обновляем значение сколько осталось элементов
 export const ACTION_TAKE_ITEMS = 'ACTION_TAKE_ITEMS';
 export function takeItems(itemsNumber) {
     return {
@@ -6,6 +8,7 @@ export function takeItems(itemsNumber) {
     };
 }
 
+// обновляем счетчик игрока
 export const ACTION_PULL_ITEM = 'ACTION_PULL_ITEM';
 export function pullItems(itemsNumber) {
     return {
@@ -14,6 +17,7 @@ export function pullItems(itemsNumber) {
     };
 }
 
+// обновляем счетчик компьютера
 export const ACTION_PULL_ITEM_COMP = 'ACTION_PULL_ITEM_COMP';
 export function pullItemsComp(itemsNumber) {
     return {
@@ -22,9 +26,23 @@ export function pullItemsComp(itemsNumber) {
     };
 }
 
+// передача хода
 export const ACTION_SWITCH_TURN = 'ACTION_SWITCH_TURN';
 export function switchTurn() {
     return {
         type: ACTION_SWITCH_TURN,
     };
 }
+
+
+
+
+
+// export const THUNK_MAKE_TURN = 'THUNK_MAKE_TURN';
+// export function makeTurn(itemsNumber) {
+//     return function (dispatch) {
+//         dispatch(takeItems(itemsNumber));
+//         dispatch(pullItems(itemsNumber));
+//         dispatch(switchTurn());
+//     };
+// }

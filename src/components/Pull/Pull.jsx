@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { } from '../../store/actions'
 
 function Pull({ itemsPull }) {
+
     return (
         <div>
             {itemsPull}
@@ -13,7 +14,7 @@ function Pull({ itemsPull }) {
 function mapStateToProps(state) {
 
     return {
-        itemsPull: state.itemsPull
+        itemsPull: state.itemsPull,
     }
 }
 
