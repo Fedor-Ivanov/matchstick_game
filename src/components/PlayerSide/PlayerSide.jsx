@@ -27,10 +27,10 @@ function PlayerSide({
 
     function checkWinner() {
         if (playerCount % 2 == 0)
-            alert("выиграл");
+            alert("Win");
         setWinner();
         if (playerCount % 2 == 1)
-            alert("проиграл");
+            alert("Lose");
     }
 
     function onEndTurn() {
@@ -44,7 +44,7 @@ function PlayerSide({
                 updatePlayerCount(+takingItems)
             }
         } else {
-            alert(`Необходимо ввести число от 1 до ${taking}`)
+            alert(`You must enter a number from 1 to ${taking}`)
         }
     }
 

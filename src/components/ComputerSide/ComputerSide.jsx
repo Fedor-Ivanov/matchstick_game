@@ -25,10 +25,10 @@ function ComputerSide({
 
     function checkWinner() {
         if (computerCount % 2 == 0)
-            alert("проиграл");
+            alert("Lose");
         setWinner();
         if (computerCount % 2 == 1)
-            alert("выиграл");
+            alert("Win");
     }
 
     function compTurn() {

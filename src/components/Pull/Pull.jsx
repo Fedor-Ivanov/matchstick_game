@@ -5,7 +5,7 @@ function Pull({ itemsPull }) {
 
     return (
 
-        <div style={{ textAlign: 'center' }}> {itemsPull}</div >
+        <div style={{ textAlign: 'center', fontSize: '2em' }}> {itemsPull}</div >
     )
 }
 
