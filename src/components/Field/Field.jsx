@@ -5,12 +5,22 @@ import PlayerSide from '../PlayerSide/PlayerSide'
 
 function Field() {
     return (
-        <div>
+        <div style={fieldWrap}>
             <ComputerSide></ComputerSide>
             <Pull></Pull>
             <PlayerSide></PlayerSide>
         </div>
     )
+}
+
+const fieldWrap = {
+    display: 'grid',
+    height: '100vh',
+    fontSize: '1.5em',
+    color: '#fff',
+    gridTemplateRows: 'repeat(3, 1fr)',
+    alignItems: 'center',
+    justifyContent: 'center'
 }
 
 export default Field

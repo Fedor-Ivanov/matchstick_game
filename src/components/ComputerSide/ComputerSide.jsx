@@ -31,11 +31,6 @@ function ComputerSide({
             alert("выиграл");
     }
 
-
-    // function makeTurn() {
-
-    // }
-
     function compTurn() {
         const computerTakeItems = Math.floor(Math.random() * taking) + 1;
         if (itemsPull - computerTakeItems > 0) {
@@ -61,7 +56,7 @@ function ComputerSide({
             <div>computer count  - {computerCount}</div>
             <div>
                 {arr.map(item => (
-                    <span key={item}>o</span>
+                    <img key={item} src={require('../../img/match.png')} />
                 ))}
             </div>
         </div>

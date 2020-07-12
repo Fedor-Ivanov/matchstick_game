@@ -4,24 +4,15 @@ import Modal from './components/Modal/Modal'
 import { connect } from 'react-redux'
 
 
-
 function App({ isVisible }) {
   return (
-    <div style={fieldWrap}>
+    <div style={{ background: 'linear-gradient(to right, #11998e, #38ef7d)' }} >
       <Modal></Modal>
       {!isVisible &&
         <Field></Field>}
 
     </div>
   )
-}
-
-const fieldWrap = {
-  display: 'grid',
-  height: '100vh',
-  gridTemplateRows: 'repeat(3, 1fr)',
-  alignItems: 'center',
-  justifyContent: 'center'
 }
 
 

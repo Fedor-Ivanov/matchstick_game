@@ -11,7 +11,7 @@ import {
 } from './actions';
 
 const initialState = {
-    itemsPull: 1,
+    itemsPull: 25,
     taking: 3,
     playerCount: 0,
     computerCount: 0,

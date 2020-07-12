@@ -11,7 +11,9 @@ function Modal({
     setTakeValue
 }) {
 
-    const [mode, setMode] = useState(1)
+    const [mode, setMode] = useState('1')
+
+    const [customNubmers, setCustomNubmers] = useState(false)
 
     function startGame() {
         setGameMode(mode);
@@ -23,24 +25,27 @@ function Modal({
             {isVisible &&
                 <div style={backdropStyle}>
                     <div style={modalStyle}>
-
-                        <div>
-                            <p>first turn</p>
+                        <h2>Game settings</h2>
+                        <div style={{ textAlign: 'center' }}>
+                            <div>Whose turn is the first?</div>
                             <div>
-                                <label><input name="modeww" type="radio" value='1' checked={mode} onChange={event => setMode(event.target.value)} />norm</label>
-                                <label><input name="modeww" type="radio" value='0' onChange={event => setMode(event.target.value)} />comp</label>
+                                <label><input name="modeww" type="radio" value='1' defaultChecked onChange={event => setMode(event.target.value)} />player</label>
+                                <label><input name="modeww" type="radio" value='0' onChange={event => setMode(event.target.value)} />computer</label>
                             </div>
                         </div>
+                        <label><input type='checkbox' value={customNubmers} onChange={() => setCustomNubmers(!customNubmers)}></input>custom numbers mode</label>
 
-                        <div>
-                            <p>custom numbers mode</p>
-                            <div>
-                                <input name="pullValue" type="number" onChange={(e) => setPullValue(e.target.value)} />
-                                <input name="taking" type="number" onChange={(e) => setTakeValue(e.target.value)} />
+                        {customNubmers ?
+                            <div style={{ display: 'flex' }}>
+                                <input name="pullValue" type="number" placeholder='number of matches' onChange={(e) => setPullValue(e.target.value)} />
+                                <input name="taking" type="number" placeholder='range to take' onChange={(e) => setTakeValue(e.target.value)} />
                             </div>
+                            :
+                            ''
+                        }
+                        <div>
+                            <button onClick={() => startGame()}>start game</button>
                         </div>
-                        <button onClick={() => startGame()}>start game</button>
-
                     </div>
                 </div>
             }
@@ -66,7 +71,10 @@ const modalStyle = {
     minHeight: 200,
     margin: '0 auto',
     padding: 30,
-    display: "block",
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     position: 'relative',
     top: 'calc(50% - 100px)'
 };

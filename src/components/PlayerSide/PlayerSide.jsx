@@ -50,20 +50,18 @@ function PlayerSide({
 
     let arr = Array.apply(null, Array(playerCount)).map((val, idx) => idx);
 
-
     return (
         <div>
-            <p>PlayerSide</p>
             <div>
                 <span>My count - {playerCount}</span>
             </div>
             <div>
                 {arr.map(item => (
-                    <span key={item}>o</span>
+                    <img key={item} src={require('../../img/match.png')} />
                 ))}
             </div>
             <div><input style={{ width: '100%' }} type='number' name='points' min='1' max={taking} onChange={event => setTakingItems(event.target.value)}></input></div>
-            <button disabled={!playerTurn} onClick={() => onEndTurn()}>end turn</button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}><button disabled={!playerTurn} onClick={() => onEndTurn()}>end turn</button></div>
         </div>
     )
 }
