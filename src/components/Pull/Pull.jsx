@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { } from '../../store/actions'
 
 function Pull({ itemsPull }) {
 
+
     return (
         <div>
-            {itemsPull}
+            <div>{itemsPull}</div>
+
+
         </div>
     )
 }

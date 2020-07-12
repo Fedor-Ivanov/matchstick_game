@@ -1,15 +1,17 @@
 import React from 'react'
-import ComputerSide from './components/ComputerSide/ComputerSide'
-import PlayerSide from './components/PlayerSide/PlayerSide'
-import Pull from './components/Pull/Pull'
+import Field from './components/Field/Field'
+import Modal from './components/Modal/Modal'
+import { connect } from 'react-redux'
 
 
-function App() {
+
+function App({ isVisible }) {
   return (
     <div style={fieldWrap}>
-      <ComputerSide></ComputerSide>
-      <Pull></Pull>
-      <PlayerSide></PlayerSide>
+      <Modal></Modal>
+      {!isVisible &&
+        <Field></Field>}
+
     </div>
   )
 }
@@ -22,4 +24,14 @@ const fieldWrap = {
   justifyContent: 'center'
 }
 
-export default App
+
+function mapStateToProps(state) {
+  return {
+    isVisible: state.isVisible
+  };
+}
+
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

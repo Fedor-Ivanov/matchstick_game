@@ -1,19 +1,43 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { takeItems, switchTurn, pullItemsComp } from '../../store/actions'
+import { takeItems, switchTurn, pullItemsComp, haveWinner } from '../../store/actions'
 
 
-function ComputerSide({ playerTurn, computerCount, switchTurn, takeItems, updateComputerCount, itemsPull }) {
+function ComputerSide({
+    playerTurn,
+    computerCount,
+    switchTurn,
+    takeItems,
+    updateComputerCount,
+    itemsPull,
+    haveWinner,
+    setWinner,
+    taking
+}) {
+
+    haveAWinner();
+
+    function haveAWinner() {
+        if (itemsPull == 0 && !haveWinner) {
+            checkWinner()
+        }
+    }
 
     function checkWinner() {
         if (computerCount % 2 == 0)
             alert("проиграл");
+        setWinner();
         if (computerCount % 2 == 1)
             alert("выиграл");
     }
 
+
+    // function makeTurn() {
+
+    // }
+
     function compTurn() {
-        const computerTakeItems = Math.floor(Math.random() * 3) + 1;
+        const computerTakeItems = Math.floor(Math.random() * taking) + 1;
         if (itemsPull - computerTakeItems > 0) {
             takeItems(computerTakeItems)
             updateComputerCount(computerTakeItems)
@@ -21,16 +45,25 @@ function ComputerSide({ playerTurn, computerCount, switchTurn, takeItems, update
         } else if (itemsPull - computerTakeItems == 0) {
             takeItems(computerTakeItems)
             updateComputerCount(computerTakeItems)
-            checkWinner()
+        } else if (itemsPull == 0) {
+
         } else {
             compTurn()
         }
     }
 
+    let arr = Array.apply(null, Array(computerCount)).map((val, idx) => idx);
+
+
     return (
         <div>
-            {!playerTurn ? 'its your turn' : compTurn()}
+            {!playerTurn ? 'its your turn, human' : compTurn()}
             <div>computer count  - {computerCount}</div>
+            <div>
+                {arr.map(item => (
+                    <span key={item}>o</span>
+                ))}
+            </div>
         </div>
     )
 }
@@ -40,13 +73,16 @@ function mapStateToProps(state) {
         playerTurn: !state.playerTurn,
         computerCount: state.computerCount,
         itemsPull: state.itemsPull,
+        haveWinner: state.haveWinner,
+        taking: state.taking,
     }
 }
 
 const mapDispatchToProps = {
     switchTurn: switchTurn,
     takeItems: takeItems,
-    updateComputerCount: pullItemsComp
+    updateComputerCount: pullItemsComp,
+    setWinner: haveWinner
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComputerSide)

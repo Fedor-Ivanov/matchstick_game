@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { takeItems, pullItems, switchTurn } from '../../store/actions'
+import { takeItems, pullItems, switchTurn, haveWinner } from '../../store/actions'
 
 
-function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, takeItems, itemsPull }) {
+function PlayerSide({
+    playerCount,
+    updatePlayerCount,
+    switchTurn,
+    playerTurn,
+    takeItems,
+    itemsPull,
+    haveWinner,
+    setWinner,
+    taking
+}) {
 
     const [takingItems, setTakingItems] = useState();
+
+    haveAWinner();
+
+    function haveAWinner() {
+        if (itemsPull == 0 && !haveWinner) {
+            checkWinner()
+        }
+    }
 
     function checkWinner() {
         if (playerCount % 2 == 0)
             alert("выиграл");
+        setWinner();
         if (playerCount % 2 == 1)
             alert("проиграл");
     }
 
     function onEndTurn() {
-        if (takingItems <= 3 && takingItems > 0) {
-
+        if (takingItems <= taking && takingItems > 0) {
             if (itemsPull - takingItems > 0) {
                 takeItems(takingItems)
                 updatePlayerCount(+takingItems)
@@ -24,12 +42,14 @@ function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, ta
             } else if (itemsPull - takingItems == 0) {
                 takeItems(takingItems)
                 updatePlayerCount(+takingItems)
-                checkWinner()
             }
         } else {
-            alert('Необходимо ввести число от 1 до 3')
+            alert(`Необходимо ввести число от 1 до ${taking}`)
         }
     }
+
+    let arr = Array.apply(null, Array(playerCount)).map((val, idx) => idx);
+
 
     return (
         <div>
@@ -37,7 +57,12 @@ function PlayerSide({ playerCount, updatePlayerCount, switchTurn, playerTurn, ta
             <div>
                 <span>My count - {playerCount}</span>
             </div>
-            <div><input style={{ width: '100%' }} type='number' name='points' min='1' max='3' onChange={event => setTakingItems(event.target.value)}></input></div>
+            <div>
+                {arr.map(item => (
+                    <span key={item}>o</span>
+                ))}
+            </div>
+            <div><input style={{ width: '100%' }} type='number' name='points' min='1' max={taking} onChange={event => setTakingItems(event.target.value)}></input></div>
             <button disabled={!playerTurn} onClick={() => onEndTurn()}>end turn</button>
         </div>
     )
@@ -48,6 +73,8 @@ function mapStateToProps(state) {
         playerCount: state.playerCount,
         playerTurn: state.playerTurn,
         itemsPull: state.itemsPull,
+        haveWinner: state.haveWinner,
+        taking: state.taking,
     }
 }
 
@@ -55,6 +82,7 @@ const mapDispatchToProps = {
     takeItems: takeItems,
     updatePlayerCount: pullItems,
     switchTurn: switchTurn,
+    setWinner: haveWinner
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerSide)

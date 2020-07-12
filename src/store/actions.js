@@ -1,5 +1,26 @@
+export const ACTION_START_GAME = 'ACTION_START_GAME';
+export function startGame(itemsNumber) {
+    return {
+        type: ACTION_START_GAME,
+        payload: itemsNumber
+    };
+}
 
-// обновляем значение сколько осталось элементов
+export const ACTION_SET_GAME_MODE = 'ACTION_SET_GAME_MODE';
+export function setGameMode(mode) {
+    return {
+        type: ACTION_SET_GAME_MODE,
+        payload: mode
+    };
+}
+
+export const ACTION_TOGGLE_MODAL = 'ACTION_TOGGLE_MODAL';
+export function toggleModal() {
+    return {
+        type: ACTION_TOGGLE_MODAL,
+    };
+}
+
 export const ACTION_TAKE_ITEMS = 'ACTION_TAKE_ITEMS';
 export function takeItems(itemsNumber) {
     return {
@@ -8,7 +29,6 @@ export function takeItems(itemsNumber) {
     };
 }
 
-// обновляем счетчик игрока
 export const ACTION_PULL_ITEM = 'ACTION_PULL_ITEM';
 export function pullItems(itemsNumber) {
     return {
@@ -17,7 +37,6 @@ export function pullItems(itemsNumber) {
     };
 }
 
-// обновляем счетчик компьютера
 export const ACTION_PULL_ITEM_COMP = 'ACTION_PULL_ITEM_COMP';
 export function pullItemsComp(itemsNumber) {
     return {
@@ -26,7 +45,6 @@ export function pullItemsComp(itemsNumber) {
     };
 }
 
-// передача хода
 export const ACTION_SWITCH_TURN = 'ACTION_SWITCH_TURN';
 export function switchTurn() {
     return {
@@ -34,15 +52,26 @@ export function switchTurn() {
     };
 }
 
+export const ACTION_SET_WINNER = 'ACTION_SET_WINNER';
+export function haveWinner() {
+    return {
+        type: ACTION_SET_WINNER,
+    };
+}
 
 
+export const ACTION_SET_PULL = 'ACTION_SET_PULL';
+export function setPullValue(value) {
+    return {
+        type: ACTION_SET_PULL,
+        payload: value
+    };
+}
 
-
-// export const THUNK_MAKE_TURN = 'THUNK_MAKE_TURN';
-// export function makeTurn(itemsNumber) {
-//     return function (dispatch) {
-//         dispatch(takeItems(itemsNumber));
-//         dispatch(pullItems(itemsNumber));
-//         dispatch(switchTurn());
-//     };
-// }
+export const ACTION_SET_TAKE = 'ACTION_SET_TAKE';
+export function setTakeValue(value) {
+    return {
+        type: ACTION_SET_TAKE,
+        payload: value
+    };
+}
