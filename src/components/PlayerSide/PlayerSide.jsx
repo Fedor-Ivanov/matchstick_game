@@ -27,10 +27,10 @@ function PlayerSide({
 
     function checkWinner() {
         if (playerCount % 2 == 0)
-            alert("Win");
+            alert("выиграл");
         setWinner();
         if (playerCount % 2 == 1)
-            alert("Lose");
+            alert("проиграл");
     }
 
     function onEndTurn() {
@@ -44,7 +44,7 @@ function PlayerSide({
                 updatePlayerCount(+takingItems)
             }
         } else {
-            alert(`You must enter a number from 1 to ${taking}`)
+            alert(`Необходимо ввести число от 1 до ${taking}`)
         }
     }
 
@@ -53,13 +53,14 @@ function PlayerSide({
     return (
         <div>
             <div>
-                <span>My count - {playerCount}</span>
-            </div>
-            <div>
                 {arr.map(item => (
                     <img key={item} src={require('../../img/match.png')} />
                 ))}
             </div>
+            <div>
+                <span>player count - {playerCount}</span>
+            </div>
+
             <div><input style={{ width: '100%' }} type='number' name='points' min='1' max={taking} onChange={event => setTakingItems(event.target.value)}></input></div>
             <div style={{ display: 'flex', justifyContent: 'center' }}><button disabled={!playerTurn} onClick={() => onEndTurn()}>end turn</button></div>
         </div>

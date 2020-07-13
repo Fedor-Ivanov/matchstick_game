@@ -5,7 +5,7 @@ function Pull({ itemsPull }) {
 
     return (
 
-        <div style={{ textAlign: 'center', fontSize: '2em' }}> {itemsPull}</div >
+        <div style={pullValueStyle}> {itemsPull}</div >
     )
 }
 
@@ -17,5 +17,20 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
 };
+
+const pullValueStyle = {
+    textAlign: 'center',
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    width: '80px',
+    height: '80px',
+    color: '#000',
+    fontSize: '2em',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pull)

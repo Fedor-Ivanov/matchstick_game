@@ -37,8 +37,8 @@ function Modal({
 
                         {customNubmers ?
                             <div style={{ display: 'flex' }}>
-                                <input name="pullValue" type="number" placeholder='number of matches' onChange={(e) => setPullValue(e.target.value)} />
-                                <input name="taking" type="number" placeholder='range to take' onChange={(e) => setTakeValue(e.target.value)} />
+                                <input style={{ margin: '10px' }} name="pullValue" type="number" placeholder='number of matches' onChange={(e) => setPullValue(e.target.value)} />
+                                <input style={{ margin: '10px' }} name="taking" type="number" placeholder='range to take' onChange={(e) => setTakeValue(e.target.value)} />
                             </div>
                             :
                             ''
@@ -67,7 +67,7 @@ const backdropStyle = {
 const modalStyle = {
     backgroundColor: '#fff',
     borderRadius: 5,
-    maxWidth: 300,
+    maxWidth: 450,
     minHeight: 200,
     margin: '0 auto',
     padding: 30,

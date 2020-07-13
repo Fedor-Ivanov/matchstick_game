@@ -25,10 +25,10 @@ function ComputerSide({
 
     function checkWinner() {
         if (computerCount % 2 == 0)
-            alert("Lose");
+            alert("проиграл");
         setWinner();
         if (computerCount % 2 == 1)
-            alert("Win");
+            alert("выиграл");
     }
 
     function compTurn() {
@@ -52,7 +52,7 @@ function ComputerSide({
 
     return (
         <div>
-            {!playerTurn ? 'its your turn, human' : compTurn()}
+            {!playerTurn ? '' : compTurn()}
             <div>computer count  - {computerCount}</div>
             <div>
                 {arr.map(item => (
